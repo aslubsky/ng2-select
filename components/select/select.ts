@@ -95,10 +95,9 @@ let optionsTemplate = `
     <div [ngClass]="{'ui-disabled': disabled}"></div>
     <span class="ui-select-match">
         <span *ngFor="#a of active">
-            <span class="ui-select-match-item btn btn-default btn-secondary btn-xs"
+            <span class="ui-select-match-item btn {{itemClass}} btn-secondary btn-xs"
                   tabindex="-1"
-                  type="button"
-                  [ngClass]="{'btn-default': true}">
+                  type="button">
                <a class="close ui-select-match-close"
                   (click)="remove(a)">&nbsp;&times;</a>
                <span>{{a.text}}</span>
@@ -126,6 +125,8 @@ export class Select {
   allowClear:boolean = false;
   @Input()
   placeholder:string = '';
+  @Input()
+  itemClass:string = 'btn-default';
   @Input() set initData(value:Array<any>) {
     if(Array.isArray(value)) {
       this._initData = value;

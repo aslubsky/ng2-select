@@ -5,6 +5,7 @@ export declare class Select {
     element: ElementRef;
     allowClear: boolean;
     placeholder: string;
+    itemClass: string;
     initData: Array<any>;
     multiple: boolean;
     tagging: boolean;
