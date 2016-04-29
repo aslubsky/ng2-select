@@ -33,7 +33,7 @@ let optionsTemplate = `
 
     <ul *ngIf="optionsOpened && options && options.length > 0 && itemObjects[0].hasChildren()"
         class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
-      <li *ngFor="let c of options; #index=index" class="ui-select-choices-group">
+      <li *ngFor="let c of options; let index=index" class="ui-select-choices-group">
         <div class="divider" *ngIf="index > 0"></div>
         <div class="ui-select-choices-group-label dropdown-header">{{c.text}}</div>
 
