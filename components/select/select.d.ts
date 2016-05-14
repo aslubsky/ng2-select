@@ -1,4 +1,4 @@
-import { EventEmitter, ElementRef } from 'angular2/core';
+import { EventEmitter, ElementRef } from '@angular/core';
 import { SelectItem } from './select-item';
 import { IOptionsBehavior } from './select-interfaces';
 export declare class Select {

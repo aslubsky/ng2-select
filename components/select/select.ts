@@ -4,13 +4,13 @@ import {
   Output,
   EventEmitter,
   ElementRef
-} from 'angular2/core';
+} from '@angular/core';
 import {
   CORE_DIRECTIVES,
   FORM_DIRECTIVES,
   NgClass,
   NgStyle
-} from 'angular2/common';
+} from '@angular/common';
 import {SelectItem} from './select-item';
 import {HightlightPipe} from './select-pipes';
 import {IOptionsBehavior} from './select-interfaces';
