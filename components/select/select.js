@@ -234,10 +234,13 @@ var Select = (function () {
         }
         var char = e.key || String.fromCharCode(e.charCode);
         var keyCode = e.charCode;
-        var val = e.srcElement.value
-            .replace(Select.KEYMAP[keyCode], '')
-            .replace(char, '')
-            .trim();
+        var val = '';
+        if (e.srcElement) {
+            val = e.srcElement.value
+                .replace(Select.KEYMAP[keyCode], '')
+                .replace(char, '')
+                .trim();
+        }
         if (!isUpMode && this.tagging && val.length > 0) {
             var tagged = false;
             this.taggingTokens.forEach(function (token) {

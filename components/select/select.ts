@@ -403,10 +403,13 @@ export class Select {
     var char = e.key || String.fromCharCode(e.charCode);
     var keyCode = e.charCode;
 
-    var val:string = e.srcElement.value
-      .replace(Select.KEYMAP[keyCode], '')
-      .replace(char, '')
-      .trim();
+    var val:string = '';
+    if (e.srcElement) {
+      val = e.srcElement.value
+        .replace(Select.KEYMAP[keyCode], '')
+        .replace(char, '')
+        .trim();
+    }
     if (!isUpMode && this.tagging && val.length > 0) {
       var tagged = false;
       this.taggingTokens.forEach(token => {
