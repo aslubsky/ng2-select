@@ -110,7 +110,7 @@ var Select = (function () {
             return;
         }
         this.inputMode = true;
-        this.focusToInput(e.srcElement.value);
+        this.focusToInput(e.target.value);
         this.open();
         this.inputEvent(e);
     };
@@ -144,8 +144,8 @@ var Select = (function () {
                 && e.target.className && e.target.className.indexOf('ui-select') >= 0) {
                 return;
             }
-            if (e.srcElement && e.srcElement.className &&
-                e.srcElement.className.indexOf('ui-select') >= 0) {
+            if (e.target && e.target.className &&
+                e.target.className.indexOf('ui-select') >= 0) {
                 if (e.target.nodeName !== 'INPUT') {
                     context.matchClick(null);
                 }
@@ -235,8 +235,8 @@ var Select = (function () {
         var char = e.key || String.fromCharCode(e.charCode);
         var keyCode = e.charCode;
         var val = '';
-        if (e.srcElement) {
-            val = e.srcElement.value
+        if (e.target) {
+            val = e.target.value
                 .replace(Select.KEYMAP[keyCode], '')
                 .replace(char, '')
                 .trim();
@@ -244,7 +244,7 @@ var Select = (function () {
         if (!isUpMode && this.tagging && val.length > 0) {
             var tagged = false;
             this.taggingTokens.forEach(function (token) {
-                if (token === Select.KEYMAP[keyCode] || token === char) {
+                if (token === Select.KEYMAP[keyCode] || token.toLowerCase() === char.toLowerCase()) {
                     tagged = true;
                 }
             });
@@ -267,8 +267,8 @@ var Select = (function () {
             e.preventDefault();
             return;
         }
-        if (e.srcElement) {
-            this.inputValue = e.srcElement.value;
+        if (e.target) {
+            this.inputValue = e.target.value;
             this.behavior.filter(new RegExp(this.inputValue, 'ig'));
             this.doEvent('typed', this.inputValue);
         }
