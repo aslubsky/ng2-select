@@ -37,7 +37,7 @@ let optionsTemplate = `
              [class.active]="isActive(o)"
              (mouseenter)="selectActive(o)"
              (click)="selectMatch(o, $event)"
-             [ngClass]="{'active': isActive(o)}">
+             [class.active]="isActive(o)">
           <a href="javascript:void(0)" class="ui-select-choices-row-inner">
             <div [innerHtml]="o.text | hightlight:inputValue"></div>
           </a>
@@ -53,7 +53,7 @@ let optionsTemplate = `
      *ngIf="multiple === false"
      (keyup)="mainClick($event)"
      class="ui-select-container ui-select-bootstrap dropdown open">
-    <div [ngClass]="{'ui-disabled': disabled}"></div>
+    <div [class.ui-disabled]="disabled"></div>
     <div class="ui-select-match"
          *ngIf="!inputMode">
       <span tabindex="-1"
@@ -62,7 +62,7 @@ let optionsTemplate = `
           style="outline: 0;">
         <span *ngIf="active.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
         <span *ngIf="active.length > 0" class="ui-select-match-text pull-left"
-              [ngClass]="{'ui-select-allow-clear': allowClear && active.length > 0}">{{active[0].text}}</span>
+            [class.ui-select-allow-clear]="allowClear && active.length > 0">{{active[0].text}}</span>
         <i class="dropdown-toggle pull-right"></i>
         <i class="caret pull-right"></i>
         <a *ngIf="allowClear && active.length>0" style="margin-right: 10px; padding: 0;"
@@ -86,7 +86,7 @@ let optionsTemplate = `
      (keyup)="mainClick($event)"
      (focus)="focusToInput('')"
      class="ui-select-container ui-select-multiple ui-select-bootstrap dropdown form-control open">
-    <div [ngClass]="{'ui-disabled': disabled}"></div>
+    <div [class.ui-disabled]="disabled"></div>
     <span class="ui-select-match">
         <span *ngFor="let a of active">
             <span class="ui-select-match-item btn {{itemClass}} btn-secondary btn-xs"
