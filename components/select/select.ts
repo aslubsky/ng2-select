@@ -5,12 +5,7 @@ import {
   EventEmitter,
   ElementRef
 } from '@angular/core';
-import {
-  CORE_DIRECTIVES,
-  FORM_DIRECTIVES,
-  NgClass,
-  NgStyle
-} from '@angular/common';
+
 import {SelectItem} from './select-item';
 import {HightlightPipe} from './select-pipes';
 import {IOptionsBehavior} from './select-interfaces';
@@ -53,7 +48,6 @@ let optionsTemplate = `
 
 @Component({
   selector: 'ng-select',
-  pipes: [HightlightPipe],
   template: `
   <div tabindex="0"
      *ngIf="multiple === false"
@@ -120,7 +114,7 @@ let optionsTemplate = `
   </div>
   `
 })
-export class Select {
+export class SelectComponent {
   @Input()
   allowClear:boolean = false;
   @Input()
@@ -406,14 +400,14 @@ export class Select {
     var val:string = '';
     if (e.target) {
       val = e.target.value
-        .replace(Select.KEYMAP[keyCode], '')
+        .replace(SelectComponent.KEYMAP[keyCode], '')
         .replace(char, '')
         .trim();
     }
     if (!isUpMode && this.tagging && val.length > 0) {
       var tagged = false;
       this.taggingTokens.forEach(token => {
-        if (token === Select.KEYMAP[keyCode] || token.toLowerCase() === char.toLowerCase()) {
+        if (token === SelectComponent.KEYMAP[keyCode] || token.toLowerCase() === char.toLowerCase()) {
           tagged = true;
         }
       });
@@ -495,7 +489,7 @@ export class Select {
 export class Behavior {
   public optionsMap:Map<string, number> = new Map<string, number>();
 
-  constructor(public actor:Select) {
+  constructor(public actor:SelectComponent) {
   }
 
   private getActiveIndex(optionsMap:Map<string, number> = null):number {
@@ -550,7 +544,7 @@ export class Behavior {
 }
 
 export class GenericBehavior extends Behavior implements IOptionsBehavior {
-  constructor(public actor:Select) {
+  constructor(public actor:SelectComponent) {
     super(actor);
   }
 
@@ -594,7 +588,7 @@ export class GenericBehavior extends Behavior implements IOptionsBehavior {
 }
 
 export class ChildrenBehavior extends Behavior implements IOptionsBehavior {
-  constructor(public actor:Select) {
+  constructor(public actor:SelectComponent) {
     super(actor);
   }
 

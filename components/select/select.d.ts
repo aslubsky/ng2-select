@@ -1,7 +1,7 @@
 import { EventEmitter, ElementRef } from '@angular/core';
 import { SelectItem } from './select-item';
 import { IOptionsBehavior } from './select-interfaces';
-export declare class Select {
+export declare class SelectComponent {
     element: ElementRef;
     allowClear: boolean;
     placeholder: string;
@@ -47,16 +47,16 @@ export declare class Select {
     private isActive(value);
 }
 export declare class Behavior {
-    actor: Select;
+    actor: SelectComponent;
     optionsMap: Map<string, number>;
-    constructor(actor: Select);
+    constructor(actor: SelectComponent);
     private getActiveIndex(optionsMap?);
     fillOptionsMap(): void;
     ensureHighlightVisible(optionsMap?: Map<string, number>): void;
 }
 export declare class GenericBehavior extends Behavior implements IOptionsBehavior {
-    actor: Select;
-    constructor(actor: Select);
+    actor: SelectComponent;
+    constructor(actor: SelectComponent);
     first(): void;
     last(): void;
     prev(): void;
@@ -64,8 +64,8 @@ export declare class GenericBehavior extends Behavior implements IOptionsBehavio
     filter(query: RegExp): void;
 }
 export declare class ChildrenBehavior extends Behavior implements IOptionsBehavior {
-    actor: Select;
-    constructor(actor: Select);
+    actor: SelectComponent;
+    constructor(actor: SelectComponent);
     first(): void;
     last(): void;
     prev(): void;

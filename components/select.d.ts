@@ -1,1 +1,2 @@
-export declare const SELECT_DIRECTIVES: Array<any>;
+export declare class UiSelectModule {
+}

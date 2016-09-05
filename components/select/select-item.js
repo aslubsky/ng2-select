@@ -1,4 +1,3 @@
-"use strict";
 var SelectItem = (function () {
     function SelectItem(source) {
         var _this = this;
@@ -36,6 +35,6 @@ var SelectItem = (function () {
         return r;
     };
     return SelectItem;
-}());
+})();
 exports.SelectItem = SelectItem;
 //# sourceMappingURL=select-item.js.map
