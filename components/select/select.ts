@@ -281,7 +281,7 @@ export class SelectComponent {
         return;
       }
 
-      if (e.target && e.target.className &&
+      if (e.target && e.target.className && e.target.className.length > 0 &&
         e.target.className.indexOf('ui-select') >= 0) {
         if (e.target.nodeName !== 'INPUT') {
           context.matchClick(null);
