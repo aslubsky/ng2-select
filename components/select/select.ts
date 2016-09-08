@@ -258,7 +258,7 @@ export class SelectComponent {
   }
 
   ngOnInit() {
-    this.behavior = this.itemObjects[0].hasChildren() ?
+    this.behavior = (this.itemObjects.length>0 && this.itemObjects[0].hasChildren()) ?
       new ChildrenBehavior(this) : new GenericBehavior(this);
     this.offSideClickHandler = this.getOffSideClickHandler(this);
     document.addEventListener('click', this.offSideClickHandler);
