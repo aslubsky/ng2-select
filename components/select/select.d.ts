@@ -33,7 +33,7 @@ export declare class SelectComponent {
     private focusToInput(value?);
     private matchClick(e);
     private mainClick(e);
-    private open();
+    open(): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
     private getOffSideClickHandler(context);
