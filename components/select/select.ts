@@ -245,7 +245,7 @@ export class SelectComponent {
     this.inputEvent(e);
   }
 
-  private open() {
+  public open() {
     this.options = this.itemObjects
       .filter(option => (this.multiple === false ||
       this.multiple === true && !this.active.find(o => option.text === o.text)));
