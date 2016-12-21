@@ -1,3 +1,4 @@
+/// <reference types="es6-shim" />
 import { EventEmitter, ElementRef } from '@angular/core';
 import { SelectItem } from './select-item';
 import { IOptionsBehavior } from './select-interfaces';

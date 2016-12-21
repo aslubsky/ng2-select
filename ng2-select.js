@@ -2,6 +2,5 @@
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(require('./components/select/select'));
-__export(require('./components/select'));
+__export(require('./components/select.module'));
 //# sourceMappingURL=ng2-select.js.map

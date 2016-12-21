@@ -10,13 +10,16 @@
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "listFiles": false,
+    "types": [
+      "node",
+      "es6-shim"
+    ],
     "noLib": false
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "./typings/main.d.ts",
     "./ng2-select.ts"
   ]
 }

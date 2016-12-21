@@ -7,44 +7,7 @@ import {
 } from '@angular/core';
 
 import {SelectItem} from './select-item';
-import {HightlightPipe} from './select-pipes';
 import {IOptionsBehavior} from './select-interfaces';
-
-let optionsTemplate = `
-    <ul *ngIf="optionsOpened && options && options.length > 0 && !itemObjects[0].hasChildren()"
-        class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
-      <li class="ui-select-choices-group">
-        <div *ngFor="let o of options"
-             class="ui-select-choices-row"
-             [class.active]="isActive(o)"
-             (mouseenter)="selectActive(o)"
-             (click)="selectMatch(o, $event)">
-          <a href="javascript:void(0)" class="ui-select-choices-row-inner">
-            <div [innerHtml]="o.text | hightlight:inputValue"></div>
-          </a>
-        </div>
-      </li>
-    </ul>
-
-    <ul *ngIf="optionsOpened && options && options.length > 0 && itemObjects[0].hasChildren()"
-        class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
-      <li *ngFor="let c of options; let index=index" class="ui-select-choices-group">
-        <div class="divider" *ngIf="index > 0"></div>
-        <div class="ui-select-choices-group-label dropdown-header">{{c.text}}</div>
-
-        <div *ngFor="let o of c.children"
-             class="ui-select-choices-row"
-             [class.active]="isActive(o)"
-             (mouseenter)="selectActive(o)"
-             (click)="selectMatch(o, $event)"
-             [class.active]="isActive(o)">
-          <a href="javascript:void(0)" class="ui-select-choices-row-inner">
-            <div [innerHtml]="o.text | hightlight:inputValue"></div>
-          </a>
-        </div>
-      </li>
-    </ul>
-`;
 
 @Component({
   selector: 'ng-select',
@@ -78,7 +41,39 @@ let optionsTemplate = `
            class="form-control ui-select-search"
            *ngIf="inputMode"
            placeholder="{{active.length <= 0 ? placeholder : ''}}">
-      ${optionsTemplate}
+      <ul *ngIf="optionsOpened && options && options.length > 0 && !itemObjects[0].hasChildren()"
+        class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
+      <li class="ui-select-choices-group">
+        <div *ngFor="let o of options"
+             class="ui-select-choices-row"
+             [class.active]="isActive(o)"
+             (mouseenter)="selectActive(o)"
+             (click)="selectMatch(o, $event)">
+          <a href="javascript:void(0)" class="ui-select-choices-row-inner">
+            <div [innerHtml]="o.text | hightlight:inputValue"></div>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <ul *ngIf="optionsOpened && options && options.length > 0 && itemObjects[0].hasChildren()"
+        class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
+      <li *ngFor="let c of options; let index=index" class="ui-select-choices-group">
+        <div class="divider" *ngIf="index > 0"></div>
+        <div class="ui-select-choices-group-label dropdown-header">{{c.text}}</div>
+
+        <div *ngFor="let o of c.children"
+             class="ui-select-choices-row"
+             [class.active]="isActive(o)"
+             (mouseenter)="selectActive(o)"
+             (click)="selectMatch(o, $event)"
+             [class.active]="isActive(o)">
+          <a href="javascript:void(0)" class="ui-select-choices-row-inner">
+            <div [innerHtml]="o.text | hightlight:inputValue"></div>
+          </a>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <div tabindex="0"
@@ -110,11 +105,44 @@ let optionsTemplate = `
            class="ui-select-search input-xs"
            placeholder="{{active.length <= 0 ? placeholder : ''}}"
            role="combobox">
-    ${optionsTemplate}
+      <ul *ngIf="optionsOpened && options && options.length > 0 && !itemObjects[0].hasChildren()"
+          class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
+        <li class="ui-select-choices-group">
+          <div *ngFor="let o of options"
+               class="ui-select-choices-row"
+               [class.active]="isActive(o)"
+               (mouseenter)="selectActive(o)"
+               (click)="selectMatch(o, $event)">
+            <a href="javascript:void(0)" class="ui-select-choices-row-inner">
+              <div [innerHtml]="o.text | hightlight:inputValue"></div>
+            </a>
+          </div>
+        </li>
+      </ul>
+  
+      <ul *ngIf="optionsOpened && options && options.length > 0 && itemObjects[0].hasChildren()"
+          class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu">
+        <li *ngFor="let c of options; let index=index" class="ui-select-choices-group">
+          <div class="divider" *ngIf="index > 0"></div>
+          <div class="ui-select-choices-group-label dropdown-header">{{c.text}}</div>
+  
+          <div *ngFor="let o of c.children"
+               class="ui-select-choices-row"
+               [class.active]="isActive(o)"
+               (mouseenter)="selectActive(o)"
+               (click)="selectMatch(o, $event)"
+               [class.active]="isActive(o)">
+            <a href="javascript:void(0)" class="ui-select-choices-row-inner">
+              <div [innerHtml]="o.text | hightlight:inputValue"></div>
+            </a>
+          </div>
+        </li>
+      </ul>
   </div>
   `
 })
 export class SelectComponent {
+
   @Input()
   allowClear:boolean = false;
   @Input()
