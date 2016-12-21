@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,35 +7,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-var select_1 = require('./components/select/select');
-var select_pipes_1 = require('./components/select/select-pipes');
-var platform_browser_1 = require('@angular/platform-browser');
-var core_1 = require('@angular/core');
-var Ng2SelectModule = (function () {
+import { SelectComponent } from './components/select/select';
+import { HightlightPipe } from './components/select/select-pipes';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+export var Ng2SelectModule = (function () {
     function Ng2SelectModule() {
     }
     Ng2SelectModule = __decorate([
-        core_1.NgModule({
+        NgModule({
             exports: [
-                select_1.SelectComponent,
-                select_pipes_1.HightlightPipe
+                SelectComponent,
+                HightlightPipe
             ],
             declarations: [
-                select_1.SelectComponent,
-                select_pipes_1.HightlightPipe
+                SelectComponent,
+                HightlightPipe
             ],
             imports: [
-                platform_browser_1.BrowserModule
+                BrowserModule
             ]
         }), 
         __metadata('design:paramtypes', [])
     ], Ng2SelectModule);
     return Ng2SelectModule;
 }());
-exports.Ng2SelectModule = Ng2SelectModule;
-__export(require('./components/select/select'));
-__export(require('./components/select/select-pipes'));
+export * from './components/select/select';
+export * from './components/select/select-pipes';
 //# sourceMappingURL=ng2-select.js.map

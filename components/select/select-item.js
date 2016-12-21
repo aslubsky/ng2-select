@@ -1,5 +1,4 @@
-"use strict";
-var SelectItem = (function () {
+export var SelectItem = (function () {
     function SelectItem(source) {
         var _this = this;
         if (typeof source === 'string') {
@@ -37,5 +36,4 @@ var SelectItem = (function () {
     };
     return SelectItem;
 }());
-exports.SelectItem = SelectItem;
 //# sourceMappingURL=select-item.js.map
