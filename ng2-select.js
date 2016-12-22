@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 var select_1 = require('./components/select/select');
 var select_pipes_1 = require('./components/select/select-pipes');
 var platform_browser_1 = require('@angular/platform-browser');
@@ -37,6 +34,4 @@ var Ng2SelectModule = (function () {
     return Ng2SelectModule;
 }());
 exports.Ng2SelectModule = Ng2SelectModule;
-__export(require('./components/select/select'));
-__export(require('./components/select/select-pipes'));
 //# sourceMappingURL=ng2-select.js.map

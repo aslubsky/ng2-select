@@ -20,6 +20,3 @@ import {NgModule} from '@angular/core';
 })
 export class Ng2SelectModule {
 }
-
-export * from './components/select/select';
-export * from './components/select/select-pipes';
