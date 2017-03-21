@@ -3,6 +3,9 @@
   "version": "1.0.1-beta.0",
   "description": "Angular2 based replacement for select boxes",
   "scripts": {
+    "ngc": "ngc --project tsconfig.json",
+    "tsc": "tsc --project tsconfig.json",
+    "compile": "npm run ngc && npm run tsc"
   },
   "main": "ng2-select.js",
   "typings": "ng2-select.d.ts",

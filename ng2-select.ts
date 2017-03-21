@@ -1,6 +1,6 @@
 import {SelectComponent} from './components/select/select';
 import {HightlightPipe} from './components/select/select-pipes';
-import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 
 
 import {NgModule} from '@angular/core';
@@ -15,7 +15,7 @@ import {NgModule} from '@angular/core';
     HightlightPipe
   ],
   imports: [
-    BrowserModule
+    CommonModule
   ]
 })
 export class Ng2SelectModule {
