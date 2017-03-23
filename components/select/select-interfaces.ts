@@ -3,5 +3,5 @@ export interface IOptionsBehavior {
   last():any;
   prev():any;
   next():any;
-  filter(query:RegExp):any;
+  filter(query:any):any;
 }

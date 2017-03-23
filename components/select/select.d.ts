@@ -62,7 +62,7 @@ export declare class GenericBehavior extends Behavior implements IOptionsBehavio
     last(): void;
     prev(): void;
     next(): void;
-    filter(query: RegExp): void;
+    filter(query: any): void;
 }
 export declare class ChildrenBehavior extends Behavior implements IOptionsBehavior {
     actor: SelectComponent;

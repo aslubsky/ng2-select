@@ -358,14 +358,14 @@ export class SelectComponent {
       return;
     }
 
-    if (isUpMode && (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38 ||
+    if (!isUpMode && (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38 ||
       e.keyCode === 40 || e.keyCode === 13)) {
       e.preventDefault();
       return;
     }
 
     // backspace
-    if (!isUpMode && e.keyCode === 8) {
+    if (isUpMode && e.keyCode === 8) {
       let el:any = this.element.nativeElement
         .querySelector('div.ui-select-container > input');
 
@@ -379,7 +379,7 @@ export class SelectComponent {
     }
 
     // esc
-    if (!isUpMode && e.keyCode === 27) {
+    if (isUpMode && e.keyCode === 27) {
       this.hideOptions();
       this.element.nativeElement.children[0].focus();
       e.preventDefault();
@@ -387,7 +387,7 @@ export class SelectComponent {
     }
 
     // del
-    if (!isUpMode && e.keyCode === 46) {
+    if (isUpMode && e.keyCode === 46) {
       if (this.active.length > 0) {
         this.remove(this.active[this.active.length - 1]);
       }
@@ -395,28 +395,28 @@ export class SelectComponent {
     }
 
     // left
-    if (!isUpMode && e.keyCode === 37 && this._items.length > 0) {
+    if (isUpMode && e.keyCode === 37 && this._items.length > 0) {
       this.behavior.first();
       e.preventDefault();
       return;
     }
 
     // right
-    if (!isUpMode && e.keyCode === 39 && this._items.length > 0) {
+    if (isUpMode && e.keyCode === 39 && this._items.length > 0) {
       this.behavior.last();
       e.preventDefault();
       return;
     }
 
     // up
-    if (!isUpMode && e.keyCode === 38) {
+    if (isUpMode && e.keyCode === 38) {
       this.behavior.prev();
       e.preventDefault();
       return;
     }
 
     // down
-    if (!isUpMode && e.keyCode === 40) {
+    if (isUpMode && e.keyCode === 40) {
       this.behavior.next();
       e.preventDefault();
       return;
@@ -424,7 +424,6 @@ export class SelectComponent {
 
     var char = e.key || String.fromCharCode(e.charCode);
     var keyCode = e.charCode;
-
     var val:string = '';
     if (e.target) {
       val = e.target.value
@@ -466,7 +465,7 @@ export class SelectComponent {
 
     if (e.target) {
       this.inputValue = e.target.value;
-      this.behavior.filter(new RegExp(this.inputValue, 'ig'));
+      this.behavior.filter(this.inputValue);
       this.doEvent('typed', this.inputValue);
     }
   }
@@ -600,12 +599,11 @@ export class GenericBehavior extends Behavior implements IOptionsBehavior {
     super.ensureHighlightVisible();
   }
 
-  public filter(query:RegExp) {
+  public filter(query) {
     let options = this.actor.itemObjects
-      .filter(option => query.test(option.text) &&
+      .filter(option => (option.text.indexOf(query) > -1) &&
       (this.actor.multiple === false ||
-      (this.actor.multiple === true &&
-      this.actor.active.indexOf(option) < 0)));
+      (this.actor.multiple === true && this.actor.active.indexOf(option) < 0)));
     this.actor.options = options;
 
     if (this.actor.options.length > 0) {
