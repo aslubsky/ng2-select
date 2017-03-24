@@ -35,6 +35,7 @@ import {IOptionsBehavior} from './select-interfaces';
       </span>
     </div>
     <input type="text" autocomplete="false" tabindex="-1"
+           (keydown)="keydownEvent($event)"
            (keypress)="inputEvent($event)"
            (keyup)="inputEvent($event, true)"
            [disabled]="disabled"
@@ -94,6 +95,7 @@ import {IOptionsBehavior} from './select-interfaces';
         </span>
     </span>
     <input type="text"
+           (keydown)="keydownEvent($event)"
            (keypress)="inputEvent($event)"
            (keyup)="inputEvent($event, true)"
            (click)="matchClick($event)"
@@ -352,15 +354,17 @@ export class SelectComponent {
     this.optionsOpened = false;
   }
 
+  public keydownEvent(e:any) {
+    if (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38 ||
+        e.keyCode === 40 || e.keyCode === 13) {
+      e.preventDefault();
+      return;
+    }
+  }
+
   public inputEvent(e:any, isUpMode:boolean = false) {
     // tab
     if (e.keyCode === 9) {
-      return;
-    }
-
-    if (!isUpMode && (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38 ||
-      e.keyCode === 40 || e.keyCode === 13)) {
-      e.preventDefault();
       return;
     }
 

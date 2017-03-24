@@ -614,7 +614,7 @@ class View_SelectComponent6 extends import2.AppView<any> {
   }
   createInternal(rootSelector:string):import8.ComponentRef<any> {
     this._el_0 = import3.createRenderElement(this.renderer,(null as any),'input',new import3.InlineArray8(8,'autocomplete','false','class','form-control ui-select-search','tabindex','-1','type','text'),(null as any));
-    var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_0,new import3.InlineArray4(4,'keypress',(null as any),'keyup',(null as any)),this.eventHandler(this.handleEvent_0));
+    var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_0,new import3.InlineArray8(6,'keydown',(null as any),'keypress',(null as any),'keyup',(null as any)),this.eventHandler(this.handleEvent_0));
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [this._el_0]),[disposable_0]);
     return (null as any);
   }
@@ -636,13 +636,17 @@ class View_SelectComponent6 extends import2.AppView<any> {
   handleEvent_0(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
     var result:boolean = true;
-    if ((eventName == 'keypress')) {
-      const pd_sub_0:any = ((<any>this.parentView.parentView.context.inputEvent($event)) !== false);
+    if ((eventName == 'keydown')) {
+      const pd_sub_0:any = ((<any>this.parentView.parentView.context.keydownEvent($event)) !== false);
       result = (pd_sub_0 && result);
     }
-    if ((eventName == 'keyup')) {
-      const pd_sub_1:any = ((<any>this.parentView.parentView.context.inputEvent($event,true)) !== false);
+    if ((eventName == 'keypress')) {
+      const pd_sub_1:any = ((<any>this.parentView.parentView.context.inputEvent($event)) !== false);
       result = (pd_sub_1 && result);
+    }
+    if ((eventName == 'keyup')) {
+      const pd_sub_2:any = ((<any>this.parentView.parentView.context.inputEvent($event,true)) !== false);
+      result = (pd_sub_2 && result);
     }
     return result;
   }
@@ -1061,7 +1065,7 @@ class View_SelectComponent13 extends import2.AppView<any> {
     this._NgIf_13_6 = new import11.Wrapper_NgIf(this._vc_13.vcRef,this._TemplateRef_13_5);
     this._text_14 = this.renderer.createText(this._el_0,'\n  ',(null as any));
     var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_0,new import3.InlineArray4(4,'keyup',(null as any),'focus',(null as any)),this.eventHandler(this.handleEvent_0));
-    var disposable_1:Function = import3.subscribeToRenderElement(this,this._el_9,new import3.InlineArray8(6,'keypress',(null as any),'keyup',(null as any),'click',(null as any)),this.eventHandler(this.handleEvent_9));
+    var disposable_1:Function = import3.subscribeToRenderElement(this,this._el_9,new import3.InlineArray8(8,'keydown',(null as any),'keypress',(null as any),'keyup',(null as any),'click',(null as any)),this.eventHandler(this.handleEvent_9));
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1,
@@ -1154,17 +1158,21 @@ class View_SelectComponent13 extends import2.AppView<any> {
   handleEvent_9(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
     var result:boolean = true;
-    if ((eventName == 'keypress')) {
-      const pd_sub_0:any = ((<any>this.parentView.context.inputEvent($event)) !== false);
+    if ((eventName == 'keydown')) {
+      const pd_sub_0:any = ((<any>this.parentView.context.keydownEvent($event)) !== false);
       result = (pd_sub_0 && result);
     }
-    if ((eventName == 'keyup')) {
-      const pd_sub_1:any = ((<any>this.parentView.context.inputEvent($event,true)) !== false);
+    if ((eventName == 'keypress')) {
+      const pd_sub_1:any = ((<any>this.parentView.context.inputEvent($event)) !== false);
       result = (pd_sub_1 && result);
     }
-    if ((eventName == 'click')) {
-      const pd_sub_2:any = ((<any>this.parentView.context.matchClick($event)) !== false);
+    if ((eventName == 'keyup')) {
+      const pd_sub_2:any = ((<any>this.parentView.context.inputEvent($event,true)) !== false);
       result = (pd_sub_2 && result);
+    }
+    if ((eventName == 'click')) {
+      const pd_sub_3:any = ((<any>this.parentView.context.matchClick($event)) !== false);
+      result = (pd_sub_3 && result);
     }
     return result;
   }

@@ -41,6 +41,7 @@ export declare class SelectComponent {
     remove(item: SelectItem): void;
     doEvent(type: string, value: any): void;
     private hideOptions();
+    keydownEvent(e: any): void;
     inputEvent(e: any, isUpMode?: boolean): void;
     private selectActiveMatch();
     private selectMatch(value, e?);
