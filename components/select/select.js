@@ -537,7 +537,7 @@ var ChildrenBehavior = (function (_super) {
         var startPos = 0;
         for (var _i = 0, _a = this.actor.itemObjects; _i < _a.length; _i++) {
             var si = _a[_i];
-            var children = si.children.filter(function (option) { return query.test(option.text); });
+            var children = si.children.filter(function (option) { return option.text.indexOf(query) > -1; });
             startPos = si.fillChildrenHash(optionsMap, startPos);
             if (children.length > 0) {
                 var newSi = si.getSimilar();

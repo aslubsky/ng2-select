@@ -680,13 +680,13 @@ export class ChildrenBehavior extends Behavior implements IOptionsBehavior {
     this.ensureHighlightVisible(this.optionsMap);
   }
 
-  public filter(query:RegExp) {
+  public filter(query) {
     let options:Array<SelectItem> = [];
     let optionsMap:Map<string, number> = new Map<string, number>();
     let startPos = 0;
 
     for (let si of this.actor.itemObjects) {
-      let children:Array<SelectItem> = si.children.filter(option => query.test(option.text));
+      let children:Array<SelectItem> = si.children.filter(option => option.text.indexOf(query) > -1);
       startPos = si.fillChildrenHash(optionsMap, startPos);
 
       if (children.length > 0) {

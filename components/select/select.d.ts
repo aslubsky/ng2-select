@@ -72,5 +72,5 @@ export declare class ChildrenBehavior extends Behavior implements IOptionsBehavi
     last(): void;
     prev(): void;
     next(): void;
-    filter(query: RegExp): void;
+    filter(query: any): void;
 }
