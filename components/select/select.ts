@@ -355,8 +355,9 @@ export class SelectComponent {
   }
 
   public keydownEvent(e:any) {
+    // console.log('keydownEvent', e);
     if (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38 ||
-        e.keyCode === 40 || e.keyCode === 13) {
+        e.keyCode === 40) {
       e.preventDefault();
       return;
     }

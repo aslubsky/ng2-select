@@ -180,7 +180,7 @@ var SelectComponent = (function () {
     };
     SelectComponent.prototype.keydownEvent = function (e) {
         if (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38 ||
-            e.keyCode === 40 || e.keyCode === 13) {
+            e.keyCode === 40) {
             e.preventDefault();
             return;
         }
