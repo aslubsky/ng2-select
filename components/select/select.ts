@@ -181,20 +181,17 @@ export class SelectComponent {
     }
   }
 
-  @Output()
-  data:EventEmitter<any> = new EventEmitter();
-  @Output()
-  selected:EventEmitter<any> = new EventEmitter();
-  @Output()
-  removed:EventEmitter<any> = new EventEmitter();
-  @Output()
-  typed:EventEmitter<any> = new EventEmitter();
+  @Output()  data:EventEmitter<any> = new EventEmitter();
+  @Output()  selected:EventEmitter<any> = new EventEmitter();
+  @Output()  removed:EventEmitter<any> = new EventEmitter();
+  @Output()  typed:EventEmitter<any> = new EventEmitter();
 
   public options:Array<SelectItem> = [];
   public itemObjects:Array<SelectItem> = [];
   public active:Array<SelectItem> = [];
   public activeOption:SelectItem;
   private offSideClickHandler:any;
+  private offSideClickHandlerDocument:any;
   private inputMode:boolean = false;
   private optionsOpened:boolean = false;
   private behavior:IOptionsBehavior;
@@ -219,9 +216,14 @@ export class SelectComponent {
   private focusToInput(value:string = '') {
     setTimeout(() => {
       let el = this.element.nativeElement.querySelector('div.ui-select-container > input');
-      el.focus();
-      el.value = value;
-    }, 0);
+      if (el) {
+        el.focus();
+        el.value = value;
+      } else {
+        console.log('focusToInput error ', this.element.nativeElement);
+      }
+
+    }, 500);
   }
 
   private matchClick(e:any) {
@@ -275,7 +277,7 @@ export class SelectComponent {
     this.inputEvent(e);
   }
 
-  public open() {
+  private open() {
     this.options = this.itemObjects
       .filter(option => (this.multiple === false ||
       this.multiple === true && !this.active.find(o => option.text === o.text)));
@@ -291,16 +293,23 @@ export class SelectComponent {
     this.behavior = (this.itemObjects.length>0 && this.itemObjects[0].hasChildren()) ?
       new ChildrenBehavior(this) : new GenericBehavior(this);
     this.offSideClickHandler = this.getOffSideClickHandler(this);
-    document.addEventListener('click', this.offSideClickHandler);
-
+    this.offSideClickHandlerDocument = this.getOffSideClickHandlerInDocument(this);
+    document.addEventListener('click', this.offSideClickHandlerDocument);
     if (this._initData && this._initData.length > 0) {
       this.active = this._initData.map(d => new SelectItem(d));
       this.data.emit(this.active);
     }
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.element.nativeElement.addEventListener('click', this.offSideClickHandler);
+    }, 500);
+  }
+
   ngOnDestroy() {
-    document.removeEventListener('click', this.offSideClickHandler);
+    document.removeEventListener('click', this.offSideClickHandlerDocument);
+    this.element.nativeElement.removeEventListener('click', this.offSideClickHandler);
     this.offSideClickHandler = null;
   }
 
@@ -315,6 +324,26 @@ export class SelectComponent {
         e.target.className.indexOf('ui-select') >= 0) {
         if (e.target.nodeName !== 'INPUT') {
           context.matchClick(null);
+        }
+        return;
+      }
+
+      context.inputMode = false;
+      context.optionsOpened = false;
+    };
+  }
+
+  private getOffSideClickHandlerInDocument(context:any) {
+    console.log('getOffSideClickHandlerInDocument', context);
+    return function (e:any) {
+      if (e.target && e.target.nodeName === 'INPUT'
+          && e.target.className && e.target.className.indexOf('ui-select') >= 0) {
+        return;
+      }
+
+      if (e.target && e.target.className && e.target.className.length > 0 &&
+          e.target.className.indexOf('ui-select') >= 0) {
+        if (e.target.nodeName !== 'INPUT') {
         }
         return;
       }

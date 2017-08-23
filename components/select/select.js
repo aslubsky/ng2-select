@@ -74,9 +74,14 @@ var SelectComponent = (function () {
         if (value === void 0) { value = ''; }
         setTimeout(function () {
             var el = _this.element.nativeElement.querySelector('div.ui-select-container > input');
-            el.focus();
-            el.value = value;
-        }, 0);
+            if (el) {
+                el.focus();
+                el.value = value;
+            }
+            else {
+                console.log('focusToInput error ', _this.element.nativeElement);
+            }
+        }, 500);
     };
     SelectComponent.prototype.matchClick = function (e) {
         if (this._disabled === true) {
@@ -126,14 +131,22 @@ var SelectComponent = (function () {
         this.behavior = (this.itemObjects.length > 0 && this.itemObjects[0].hasChildren()) ?
             new ChildrenBehavior(this) : new GenericBehavior(this);
         this.offSideClickHandler = this.getOffSideClickHandler(this);
-        document.addEventListener('click', this.offSideClickHandler);
+        this.offSideClickHandlerDocument = this.getOffSideClickHandlerInDocument(this);
+        document.addEventListener('click', this.offSideClickHandlerDocument);
         if (this._initData && this._initData.length > 0) {
             this.active = this._initData.map(function (d) { return new select_item_1.SelectItem(d); });
             this.data.emit(this.active);
         }
     };
+    SelectComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.element.nativeElement.addEventListener('click', _this.offSideClickHandler);
+        }, 500);
+    };
     SelectComponent.prototype.ngOnDestroy = function () {
-        document.removeEventListener('click', this.offSideClickHandler);
+        document.removeEventListener('click', this.offSideClickHandlerDocument);
+        this.element.nativeElement.removeEventListener('click', this.offSideClickHandler);
         this.offSideClickHandler = null;
     };
     SelectComponent.prototype.getOffSideClickHandler = function (context) {
@@ -146,6 +159,23 @@ var SelectComponent = (function () {
                 e.target.className.indexOf('ui-select') >= 0) {
                 if (e.target.nodeName !== 'INPUT') {
                     context.matchClick(null);
+                }
+                return;
+            }
+            context.inputMode = false;
+            context.optionsOpened = false;
+        };
+    };
+    SelectComponent.prototype.getOffSideClickHandlerInDocument = function (context) {
+        console.log('getOffSideClickHandlerInDocument', context);
+        return function (e) {
+            if (e.target && e.target.nodeName === 'INPUT'
+                && e.target.className && e.target.className.indexOf('ui-select') >= 0) {
+                return;
+            }
+            if (e.target && e.target.className && e.target.className.length > 0 &&
+                e.target.className.indexOf('ui-select') >= 0) {
+                if (e.target.nodeName !== 'INPUT') {
                 }
                 return;
             }

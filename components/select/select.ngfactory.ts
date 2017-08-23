@@ -169,6 +169,7 @@ class View_SelectComponent_Host0 extends import2.AppView<any> {
   detectChangesInternal(throwOnChange:boolean):void {
     this._SelectComponent_0_3.ngDoCheck(this,this._el_0,throwOnChange);
     this.compView_0.internalDetectChanges(throwOnChange);
+    if (!throwOnChange) { if ((this.numberOfChecks === 0)) { this._SelectComponent_0_3.context.ngAfterViewInit(); } }
   }
   destroyInternal():void {
     this.compView_0.destroy();

@@ -22,6 +22,7 @@ export declare class SelectComponent {
     active: Array<SelectItem>;
     activeOption: SelectItem;
     private offSideClickHandler;
+    private offSideClickHandlerDocument;
     private inputMode;
     private optionsOpened;
     private behavior;
@@ -34,10 +35,12 @@ export declare class SelectComponent {
     private focusToInput(value?);
     private matchClick(e);
     private mainClick(e);
-    open(): void;
+    private open();
     ngOnInit(): void;
+    ngAfterViewInit(): void;
     ngOnDestroy(): void;
     private getOffSideClickHandler(context);
+    private getOffSideClickHandlerInDocument(context);
     remove(item: SelectItem): void;
     doEvent(type: string, value: any): void;
     private hideOptions();
