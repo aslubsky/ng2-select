@@ -167,7 +167,6 @@ var SelectComponent = (function () {
         };
     };
     SelectComponent.prototype.getOffSideClickHandlerInDocument = function (context) {
-        console.log('getOffSideClickHandlerInDocument', context);
         return function (e) {
             if (e.target && e.target.nodeName === 'INPUT'
                 && e.target.className && e.target.className.indexOf('ui-select') >= 0) {

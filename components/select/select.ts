@@ -334,7 +334,6 @@ export class SelectComponent {
   }
 
   private getOffSideClickHandlerInDocument(context:any) {
-    console.log('getOffSideClickHandlerInDocument', context);
     return function (e:any) {
       if (e.target && e.target.nodeName === 'INPUT'
           && e.target.className && e.target.className.indexOf('ui-select') >= 0) {
