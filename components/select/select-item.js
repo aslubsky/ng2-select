@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var SelectItem = (function () {
     function SelectItem(source) {
         var _this = this;

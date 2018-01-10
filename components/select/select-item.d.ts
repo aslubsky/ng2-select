@@ -1,4 +1,3 @@
-/// <reference types="es6-shim" />
 export declare class SelectItem {
     id: string;
     text: string;
