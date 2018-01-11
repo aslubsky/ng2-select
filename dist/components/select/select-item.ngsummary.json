@@ -1,0 +1,1 @@
+{"moduleName":null,"summaries":[{"symbol":{"__symbol":0,"members":[]},"metadata":{"__symbolic":"class","members":{"__ctor__":[{"__symbolic":"constructor","parameters":[null]}],"fillChildrenHash":[{"__symbolic":"method"}],"hasChildren":[{"__symbolic":"method"}],"getSimilar":[{"__symbolic":"method"}]}}}],"symbols":[{"__symbol":0,"name":"SelectItem","filePath":"./select-item"}]}

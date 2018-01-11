@@ -5,10 +5,10 @@
   "scripts": {
     "ngc": "ngc --project tsconfig.json",
     "tsc": "tsc --project tsconfig.json",
-    "compile": "npm run ngc && npm run tsc"
+    "compile": "rm -rf dist/* && npm run ngc && npm run tsc"
   },
-  "main": "ng2-select.js",
-  "typings": "ng2-select.d.ts",
+  "main": "dist/ng2-select.js",
+  "typings": "dist/ng2-select.d.ts",
   "keywords": [
     "angular2",
     "select",
