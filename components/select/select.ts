@@ -3,7 +3,8 @@ import {
   Input,
   Output,
   EventEmitter,
-  ElementRef
+  ElementRef,
+  SimpleChanges
 } from '@angular/core';
 
 import {SelectItem} from './select-item';
@@ -289,9 +290,28 @@ export class SelectComponent {
     this.optionsOpened = true;
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.itemObjects.length>0) {
+      if (!this.behavior) {
+        this.behavior = (this.itemObjects.length>0 && this.itemObjects[0].hasChildren()) ?
+            new ChildrenBehavior(this) : new GenericBehavior(this);
+        // console.log('**New**', this.behavior, changes);
+      } else {
+        let typeIsChildrenBehavior = this.behavior instanceof ChildrenBehavior;
+        let needChildrenBehavior = this.itemObjects[0].hasChildren();
+        if (needChildrenBehavior && !typeIsChildrenBehavior) {
+          this.behavior =  new ChildrenBehavior(this);
+          // console.log('**ChildrenBehavior**');
+        } else if (!needChildrenBehavior && typeIsChildrenBehavior) {
+          this.behavior = new GenericBehavior(this);
+          // console.log('**GenericBehavior**');
+        }
+      }
+
+    }
+  }
+
   ngOnInit() {
-    this.behavior = (this.itemObjects.length>0 && this.itemObjects[0].hasChildren()) ?
-      new ChildrenBehavior(this) : new GenericBehavior(this);
     this.offSideClickHandler = this.getOffSideClickHandler(this);
     this.offSideClickHandlerDocument = this.getOffSideClickHandlerInDocument(this);
     document.addEventListener('click', this.offSideClickHandlerDocument);

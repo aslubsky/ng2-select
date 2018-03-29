@@ -1,4 +1,4 @@
-import { EventEmitter, ElementRef } from '@angular/core';
+import { EventEmitter, ElementRef, SimpleChanges } from '@angular/core';
 import { SelectItem } from './select-item';
 import { IOptionsBehavior } from './select-interfaces';
 export declare class SelectComponent {
@@ -35,6 +35,7 @@ export declare class SelectComponent {
     private matchClick(e);
     private mainClick(e);
     private open();
+    ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

@@ -134,9 +134,25 @@ var SelectComponent = (function () {
         }
         this.optionsOpened = true;
     };
+    SelectComponent.prototype.ngOnChanges = function (changes) {
+        if (this.itemObjects.length > 0) {
+            if (!this.behavior) {
+                this.behavior = (this.itemObjects.length > 0 && this.itemObjects[0].hasChildren()) ?
+                    new ChildrenBehavior(this) : new GenericBehavior(this);
+            }
+            else {
+                var typeIsChildrenBehavior = this.behavior instanceof ChildrenBehavior;
+                var needChildrenBehavior = this.itemObjects[0].hasChildren();
+                if (needChildrenBehavior && !typeIsChildrenBehavior) {
+                    this.behavior = new ChildrenBehavior(this);
+                }
+                else if (!needChildrenBehavior && typeIsChildrenBehavior) {
+                    this.behavior = new GenericBehavior(this);
+                }
+            }
+        }
+    };
     SelectComponent.prototype.ngOnInit = function () {
-        this.behavior = (this.itemObjects.length > 0 && this.itemObjects[0].hasChildren()) ?
-            new ChildrenBehavior(this) : new GenericBehavior(this);
         this.offSideClickHandler = this.getOffSideClickHandler(this);
         this.offSideClickHandlerDocument = this.getOffSideClickHandlerInDocument(this);
         document.addEventListener('click', this.offSideClickHandlerDocument);
